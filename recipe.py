@@ -24,9 +24,7 @@ def swap(sorted, x, y):
     sorted[x] = sorted[y]
     sorted[y] = tmp
         
-    
-def main():
-    ingredient = input('Enter an ingredient: ')
+def getIngreCount(ingredient):
     ingreCount = {}
     ingreCount = defaultdict(lambda: 0, ingreCount)
     
@@ -39,11 +37,19 @@ def main():
                 #add ingre to map if not ingredient & increment counter
                     if ingre != ingredient:
                         ingreCount[ingre] += 1
-                        
+
+    #print(getTopTwo(ingreCount))
+    return;
+
+def main():
+    ingredient = input('Enter an ingredient: ')
+    
+    getIngreCount(ingredient)
     #print(ingreCount)
-    print(getTopTwo(ingreCount))
+    #print(getTopTwo(ingreCount))
     #getTopTwo(ingreCount)
     #ingreSort(ingreCount)
+    
     return;
 
 
