@@ -1,5 +1,5 @@
 recipes = {"Spinach Dip": ["Mayo", "Sour Cream", "Nuts", "Bread", "Spinach"],
-           "Spinach Quiche": ["Garlic", "Onion", "Eggs", "Cheese" "Mushrooms",
+           "Spinach Quiche": ["Garlic", "Onion", "Eggs", "Cheese", "Mushrooms",
                               "Spinach"],
            "Spinach Stuffed Chicken Breasts": ["Spinach", "Mayo", "Cheese",
                                                "Garlic", "Chicken", "Bacon"],

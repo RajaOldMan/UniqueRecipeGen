@@ -3,25 +3,27 @@ from collections import defaultdict
 #recipes - name of database
 
 def getTopTwo(ingreCount):
-    topTwo = ["", ""]
-    for ingre, count in ingreCount.items():
-        if topTwo[0] == "":
-            topTwo[0] = ingre
-        else:
-            for i in range(len(topTwo)):
-                if ingreCount[topTwo[i]] <= count:
-                    if i == 0:
-                        topTwo[1] = topTwo[0]
-                        topTwo[0] = ingre
-                        break;
-                    else:
-                        topTwo[1] = ingre
-                elif ingreCount[topTwo[1]] == "":
-                    topTwo[1] = ingre
-                    break;
+    topTwo = ingreSort(ingreCount)
                     
-    print(topTwo)    
-    return;
+    #print(topTwo)    
+    return [topTwo[0], topTwo[1]];
+
+def ingreSort(ingreCount):
+    sorted = list(ingreCount.keys())
+    for i in range( len(sorted)):
+        for k in range( len(sorted) - 1, i, -1):
+            if ingreCount[sorted[k]] > ingreCount[sorted[k - 1]]:
+                    swap(sorted, k, k - 1)
+                
+   #print(sorted)
+    return sorted;
+
+                
+def swap(sorted, x, y):
+    tmp = sorted[x]
+    sorted[x] = sorted[y]
+    sorted[y] = tmp
+        
     
 def main():
     ingredient = input('Enter an ingredient: ')
@@ -39,7 +41,9 @@ def main():
                         ingreCount[ingre] += 1
                         
     #print(ingreCount)
-    getTopTwo(ingreCount)
+    print(getTopTwo(ingreCount))
+    #getTopTwo(ingreCount)
+    #ingreSort(ingreCount)
     return;
 
 
