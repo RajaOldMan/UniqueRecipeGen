@@ -66,9 +66,10 @@ def sortedToDict(sorted, ingreCount):
         sortedDict[sorted[i]] = ingreCount[sorted[i]]
     return sortedDict;
 
-def main():
+def main(ingre):
     recipes = getDatabase()
-    ingredient = input('Enter an ingredient: ').lower()
+    #ingredient = input('Enter an ingredient: ').lower()
+    ingredient = ingre.lower()
     
     ingreCount = getIngreCount(ingredient,recipes)
     topTwo = getTopTwo(ingreCount)
@@ -92,9 +93,9 @@ def main():
     #print(getTopTwo(ingreCount))
     #getTopTwo(ingreCount)
     #ingreSort(ingreCount)
-    print(toSkip)
+    #print(toSkip)
     
-    return;
+    return toSkip;
 
 
-main()
+#main()
