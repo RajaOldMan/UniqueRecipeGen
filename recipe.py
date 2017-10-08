@@ -50,7 +50,7 @@ def getUniqueIngre(ingreCount, topIngre, sorted, toSkip):
             else:
                 diff[sorted[i]] = topIngre[sorted[i]] - ingreCount[sorted[i]]
 
-    print(sortedToDict(ingreSort(diff), diff))            
+    #print(sortedToDict(ingreSort(diff), diff))            
     return ingreSort(diff)[0];
 
 def sortedToDict(sorted, ingreCount):
