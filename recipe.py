@@ -74,8 +74,8 @@ def main(ingre):
     ingreCount = getIngreCount(ingredient,recipes)
     topTwo = getTopTwo(ingreCount)
     if topTwo[0] == "-":
-        print("Ingredient does not exist")
-        return;
+        #print("Ingredient does not exist")
+        return topTwo;
     topIngre1 = getIngreCount(topTwo[0], recipes)
     topIngre2 = getIngreCount(topTwo[1], recipes)
     sorted1 = ingreSort(topIngre1)

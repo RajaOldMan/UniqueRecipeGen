@@ -4,7 +4,16 @@ from recipe import main
 def getIngre(event):
     ingre = ingreEntry.get()
     finalEntry.delete(0, "end")
-    finalEntry.insert(0, main(ingre))
+    ingreList = main(ingre)
+    if ingreList[0] == "-":
+        finalEntry.insert(0, "Ingredient does not exist")
+    else:
+        result = ""
+        for str in ingreList:
+            result += str
+            if str != ingreList[len(ingreList) - 1]:
+                result += ", "
+        finalEntry.insert(0, result)
 
 root = Tk()
 root.title("Unique Recipe Generator")
@@ -16,9 +25,10 @@ ingreEntry.pack(side=LEFT)
 submitButton = Button(root, text="submit")
 
 submitButton.bind("<Button-1>", getIngre)
+submitButton.bind("<Return>", getIngre)
 submitButton.pack(side=LEFT)
 
-finalEntry = Entry(root, width = 100)
+finalEntry = Entry(root, width = 70)
 finalEntry.pack(side=LEFT)
 
 root.mainloop()
