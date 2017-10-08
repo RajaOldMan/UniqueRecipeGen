@@ -41,15 +41,16 @@ def getIngreCount(ingredient):
     #print(getTopTwo(ingreCount))
     return ingreCount;
 
-def getUniqueIngre(ingreCount, topIngre, sorted, ingredient):
+def getUniqueIngre(ingreCount, topIngre, sorted, toSkip):
     diff = dict()
     for i in range(len(sorted)):
-        if sorted[i] != ingredient: 
+        if sorted[i] not in toSkip: 
             if sorted[i] not in list(ingreCount.keys()) and topIngre[sorted[i]] > 2:
                 return sorted[i];
             else:
                 diff[sorted[i]] = topIngre[sorted[i]] - ingreCount[sorted[i]]
 
+    print(sortedToDict(ingreSort(diff), diff))            
     return ingreSort(diff)[0];
 
 def sortedToDict(sorted, ingreCount):
@@ -67,16 +68,20 @@ def main():
     topIngre2 = getIngreCount(topTwo[1])
     sorted1 = ingreSort(topIngre1)
     sorted2 = ingreSort(topIngre2)
-    print(getUniqueIngre(ingreCount, topIngre1, sorted1, ingredient))
-    print(getUniqueIngre(ingreCount, topIngre2, sorted2, ingredient))
-    print(sortedToDict(ingreSort(ingreCount), ingreCount))
-    print(sortedToDict(sorted1, topIngre1))
-    print(sortedToDict(sorted2, topIngre2))
-    
+    toSkip = [ingredient, topTwo[0], topTwo[1]]
+    #print(getUniqueIngre(ingreCount, topIngre1, sorted1, toSkip))
+    toSkip.append(getUniqueIngre(ingreCount, topIngre1, sorted1, toSkip))
+    #print(getUniqueIngre(ingreCount, topIngre2, sorted2, toSkip))
+    #print(sortedToDict(ingreSort(ingreCount), ingreCount))
+    #print(sortedToDict(sorted1, topIngre1))
+    #print(sortedToDict(sorted2, topIngre2))
+
+    toSkip.append(getUniqueIngre(ingreCount, topIngre2, sorted2, toSkip))
     #print(ingreCount)
     #print(getTopTwo(ingreCount))
     #getTopTwo(ingreCount)
     #ingreSort(ingreCount)
+    print(toSkip)
     
     return;
 
