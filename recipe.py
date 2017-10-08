@@ -1,11 +1,17 @@
-from database import *
+#from database import *
+from recipeDataCollector import *
 from collections import defaultdict
 #recipes - name of database
+
+
 
 def getTopTwo(ingreCount):
     topTwo = ingreSort(ingreCount)
                     
-    #print(topTwo)    
+    #print(topTwo)
+    if len(topTwo) == 0:
+        return ["-","-"]
+        
     return [topTwo[0], topTwo[1]];
 
 def ingreSort(ingreCount):
@@ -24,9 +30,10 @@ def swap(sorted, x, y):
     sorted[x] = sorted[y]
     sorted[y] = tmp
         
-def getIngreCount(ingredient):
+def getIngreCount(ingredient, recipes):
     ingreCount = {}
     ingreCount = defaultdict(lambda: 0, ingreCount)
+    skipList = [ingredient, "salt", "all-purpose flour", "pepper"]
     
     for recipe, ingreList in recipes.items():
         #for ingre in enumerate(v):
@@ -35,7 +42,7 @@ def getIngreCount(ingredient):
         if ingredient in ingreList:
             for ingre in ingreList:    
                 #add ingre to map if not ingredient & increment counter
-                    if ingre != ingredient:
+                    if ingre not in skipList:
                         ingreCount[ingre] += 1
 
     #print(getTopTwo(ingreCount))
@@ -50,7 +57,7 @@ def getUniqueIngre(ingreCount, topIngre, sorted, toSkip):
             else:
                 diff[sorted[i]] = topIngre[sorted[i]] - ingreCount[sorted[i]]
 
-    #print(sortedToDict(ingreSort(diff), diff))            
+    #print(sortedToDict(ingreSort(diff), diff))
     return ingreSort(diff)[0];
 
 def sortedToDict(sorted, ingreCount):
@@ -60,12 +67,16 @@ def sortedToDict(sorted, ingreCount):
     return sortedDict;
 
 def main():
-    ingredient = input('Enter an ingredient: ')
+    recipes = getDatabase()
+    ingredient = input('Enter an ingredient: ').lower()
     
-    ingreCount = getIngreCount(ingredient)
+    ingreCount = getIngreCount(ingredient,recipes)
     topTwo = getTopTwo(ingreCount)
-    topIngre1 = getIngreCount(topTwo[0])
-    topIngre2 = getIngreCount(topTwo[1])
+    if topTwo[0] == "-":
+        print("Ingredient does not exist")
+        return;
+    topIngre1 = getIngreCount(topTwo[0], recipes)
+    topIngre2 = getIngreCount(topTwo[1], recipes)
     sorted1 = ingreSort(topIngre1)
     sorted2 = ingreSort(topIngre2)
     toSkip = [ingredient, topTwo[0], topTwo[1]]
