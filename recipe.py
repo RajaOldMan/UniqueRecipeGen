@@ -39,12 +39,40 @@ def getIngreCount(ingredient):
                         ingreCount[ingre] += 1
 
     #print(getTopTwo(ingreCount))
-    return;
+    return ingreCount;
+
+def getUniqueIngre(ingreCount, topIngre, sorted, ingredient):
+    diff = dict()
+    for i in range(len(sorted)):
+        if sorted[i] != ingredient: 
+            if sorted[i] not in list(ingreCount.keys()) and topIngre[sorted[i]] > 2:
+                return sorted[i];
+            else:
+                diff[sorted[i]] = topIngre[sorted[i]] - ingreCount[sorted[i]]
+
+    return ingreSort(diff)[0];
+
+def sortedToDict(sorted, ingreCount):
+    sortedDict = dict()
+    for i in range(len(sorted)):
+        sortedDict[sorted[i]] = ingreCount[sorted[i]]
+    return sortedDict;
 
 def main():
     ingredient = input('Enter an ingredient: ')
     
-    getIngreCount(ingredient)
+    ingreCount = getIngreCount(ingredient)
+    topTwo = getTopTwo(ingreCount)
+    topIngre1 = getIngreCount(topTwo[0])
+    topIngre2 = getIngreCount(topTwo[1])
+    sorted1 = ingreSort(topIngre1)
+    sorted2 = ingreSort(topIngre2)
+    print(getUniqueIngre(ingreCount, topIngre1, sorted1, ingredient))
+    print(getUniqueIngre(ingreCount, topIngre2, sorted2, ingredient))
+    print(sortedToDict(ingreSort(ingreCount), ingreCount))
+    print(sortedToDict(sorted1, topIngre1))
+    print(sortedToDict(sorted2, topIngre2))
+    
     #print(ingreCount)
     #print(getTopTwo(ingreCount))
     #getTopTwo(ingreCount)
