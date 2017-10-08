@@ -22,13 +22,13 @@ Label(root, text="Enter Ingredient: ").pack(side=LEFT)
 ingreEntry = Entry(root)
 ingreEntry.pack(side=LEFT)                    
 
-submitButton = Button(root, text="submit")
+submitButton = Button(root, text="submit", width = 8)
 
 submitButton.bind("<Button-1>", getIngre)
 submitButton.bind("<Return>", getIngre)
 submitButton.pack(side=LEFT)
 
-finalEntry = Entry(root, width = 70)
+finalEntry = Entry(root, width = 80)
 finalEntry.pack(side=LEFT)
 
 root.mainloop()

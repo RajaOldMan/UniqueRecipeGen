@@ -1,4 +1,4 @@
-#from database import *
+from database import *
 from recipeDataCollector import *
 from collections import defaultdict
 #recipes - name of database
@@ -6,13 +6,26 @@ from collections import defaultdict
 
 
 def getTopTwo(ingreCount):
-    topTwo = ingreSort(ingreCount)
-                    
+    sorted = ingreSort(ingreCount)
+    seasonings = ["-", "-"]
+    topTwo = ["-", "-"]
     #print(topTwo)
-    if len(topTwo) == 0:
+    if len(sorted) == 0:
         return ["-","-"]
-        
-    return [topTwo[0], topTwo[1]];
+    for ingre in sorted:
+        if topTwo[1] != "-" and seasonings[1] != "-":
+            break;
+        else:
+            if topTwo[0] == "-"  and ingre not in seasonData:
+                topTwo[0] = ingre
+            elif topTwo[1] == "-" and ingre not in seasonData:
+                topTwo[1] = ingre
+            elif seasonings[0] == "-" and ingre in seasonData:
+                            seasonings[0] = ingre
+            elif seasonings[1] == "-" and ingre in seasonData:
+                            seasonings[1] = ingre
+
+    return [topTwo[0], topTwo[1], seasonings[0], seasonings[1]];
 
 def ingreSort(ingreCount):
     sorted = list(ingreCount.keys())
@@ -94,7 +107,9 @@ def main(ingre):
     #getTopTwo(ingreCount)
     #ingreSort(ingreCount)
     #print(toSkip)
-    
+    toSkip.append(topTwo[2])
+    toSkip.append(topTwo[3])
+
     return toSkip;
 
 
