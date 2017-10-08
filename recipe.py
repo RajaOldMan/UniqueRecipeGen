@@ -33,7 +33,7 @@ def swap(sorted, x, y):
 def getIngreCount(ingredient, recipes):
     ingreCount = {}
     ingreCount = defaultdict(lambda: 0, ingreCount)
-    skipList = [ingredient, "salt", "all-purpose flour", "pepper"]
+    skipList = [ingredient, "salt", "all-purpose flour", "pepper", "cooking spray", "butter", "sugar", "water", "olive oil"]
     
     for recipe, ingreList in recipes.items():
         #for ingre in enumerate(v):
