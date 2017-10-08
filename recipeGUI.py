@@ -29,7 +29,7 @@ root = Tk()
 root.title("The Overactive Imagination Food Bible")
 
 Label(root, text=" Enter Ingredient ").pack(side=LEFT)
-ingreEntry = Entry(root)
+ingreEntry = Entry(root, width = 10)
 ingreEntry.pack(side=LEFT)                    
 
 submitButton = Button(root, text="submit", width = 8)
@@ -40,12 +40,12 @@ submitButton.pack(side=LEFT)
 
 Label(root, text=" Main Ingredients: ").pack(side=LEFT)
 
-finalEntry = Entry(root, width = 100)
+finalEntry = Entry(root, width = 60)
 finalEntry.pack(side=LEFT)
 
 Label(root, text=" Suggested Extras: ").pack(side=LEFT)
 
-extrasEntry = Entry(root, width = 50)
+extrasEntry = Entry(root, width = 25)
 extrasEntry.pack(side=LEFT)
 
 Label(root, text=" ").pack(side=LEFT)
